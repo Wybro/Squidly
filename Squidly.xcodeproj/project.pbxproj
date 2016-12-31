@@ -15,6 +15,7 @@
 		2DE018A71E1717E000D69F19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DE018A51E1717E000D69F19 /* Main.storyboard */; };
 		2DE018A91E1717E000D69F19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DE018A81E1717E000D69F19 /* Assets.xcassets */; };
 		2DE018AC1E1717E000D69F19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DE018AA1E1717E000D69F19 /* LaunchScreen.storyboard */; };
+		2DE018B41E17265200D69F19 /* RandomFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE018B31E17265200D69F19 /* RandomFunction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		2DE018A81E1717E000D69F19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DE018AB1E1717E000D69F19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2DE018AD1E1717E000D69F19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2DE018B31E17265200D69F19 /* RandomFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomFunction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				2DE0189D1E1717E000D69F19 /* GameScene.sks */,
 				2DE0189F1E1717E000D69F19 /* Actions.sks */,
 				2DE018A11E1717E000D69F19 /* GameScene.swift */,
+				2DE018B31E17265200D69F19 /* RandomFunction.swift */,
 				2DE018A31E1717E000D69F19 /* GameViewController.swift */,
 				2DE018A51E1717E000D69F19 /* Main.storyboard */,
 				2DE018A81E1717E000D69F19 /* Assets.xcassets */,
@@ -150,6 +153,7 @@
 			files = (
 				2DE018A21E1717E000D69F19 /* GameScene.swift in Sources */,
 				2DE018A41E1717E000D69F19 /* GameViewController.swift in Sources */,
+				2DE018B41E17265200D69F19 /* RandomFunction.swift in Sources */,
 				2DE0189C1E1717E000D69F19 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
