@@ -55,8 +55,10 @@ class GameScene: SKScene {
         }
         
         scoreLabel.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2 + self.frame.height/2.5)
-        scoreLabel.text = "\(score)"
+        scoreLabel.text = "\(ScoreManager.loadScore())"
         scoreLabel.zPosition = 5
+        scoreLabel.fontName = "04b_19"
+        scoreLabel.fontSize = 50
         self.addChild(scoreLabel)
         
         createGround()
@@ -143,6 +145,7 @@ class GameScene: SKScene {
     }
     
     func createGround() {
+        ground.name = "ground"
         ground = SKSpriteNode(imageNamed: "Ground")
         ground.setScale(0.5)
         ground.position = CGPoint(x: self.frame.width/2, y: ground.frame.height/2)
@@ -159,8 +162,8 @@ class GameScene: SKScene {
     }
     
     func createRestartButton() {
-        restartButton = SKSpriteNode(imageNamed: "RestartBtn")
-        restartButton.size = CGSize(width: 200, height: 100)
+        restartButton = SKSpriteNode(imageNamed: "restartButton")
+        restartButton.size = CGSize(width: 200, height: 50)
         restartButton.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
         restartButton.zPosition = 6
         restartButton.setScale(0)
@@ -185,6 +188,7 @@ class GameScene: SKScene {
         } else {
             gameStarted = true
             hero.physicsBody?.affectedByGravity = true
+            scoreLabel.text = "\(score)"
             
             let spawn = SKAction.run {
                 () in
@@ -263,6 +267,10 @@ extension GameScene: SKPhysicsContactDelegate {
             }))
             if !gameOver {
                 gameOver = true
+                
+                // Save score
+                ScoreManager.save(score: score)
+                
                 createRestartButton()
             }
         }
