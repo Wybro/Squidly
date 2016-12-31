@@ -16,6 +16,13 @@ struct PhysicsCategory {
     static let score: UInt32 = 0x1 << 4
 }
 
+struct SpriteType {
+    static let hero = "blueSquidStart"
+    static let ground = "ground"
+    static let background = "urbanNight"
+    static let wall = "wall"
+}
+
 class GameScene: SKScene {
     
     var ground = SKSpriteNode()
@@ -46,7 +53,7 @@ class GameScene: SKScene {
         
         // Add background
         for i in 0..<2 {
-            let background = SKSpriteNode(imageNamed: "Background")
+            let background = SKSpriteNode(imageNamed: SpriteType.background)
             background.anchorPoint = CGPoint.zero
             background.position = CGPoint(x: CGFloat(i) * self.frame.width, y: 0)
             background.name = "background"
@@ -80,8 +87,8 @@ class GameScene: SKScene {
         wallPair = SKNode()
         wallPair.name = "wallPair"
         
-        let topWall = SKSpriteNode(imageNamed: "Wall")
-        let bottomWall = SKSpriteNode(imageNamed: "Wall")
+        let topWall = SKSpriteNode(imageNamed: SpriteType.wall)
+        let bottomWall = SKSpriteNode(imageNamed: SpriteType.wall)
         
         topWall.position = CGPoint(x: self.frame.width + 25, y: self.frame.height/2 + 350)
         bottomWall.position = CGPoint(x: self.frame.width + 25, y: self.frame.height/2 - 350)
@@ -121,7 +128,7 @@ class GameScene: SKScene {
     }
     
     func createhero() {
-        hero = SKSpriteNode(imageNamed: "blueSquidStart")
+        hero = SKSpriteNode(imageNamed: SpriteType.hero)
         hero.size = CGSize(width: 50, height: 50)
         hero.position = CGPoint(x: self.frame.width/2 - hero.frame.width, y: self.frame.height/2)
         
@@ -240,6 +247,10 @@ class GameScene: SKScene {
                 let velocity = (hero.physicsBody?.velocity.dy)!
                 
                 hero.zRotation = CGFloat.clamp(min: -1, max: 0.0, value: velocity * (velocity < 0 ? 0.003 : 0.001))
+                
+                hero.physicsBody?.angularVelocity = CGFloat.clamp(min: 0, max: 8, value: (hero.physicsBody?.angularVelocity)!)
+                
+                print("angular velocity: \(hero.physicsBody?.angularVelocity)")
             }
         }
     }
