@@ -34,6 +34,10 @@ class GameScene: SKScene {
     let scoreLabel = SKLabelNode()
     var gameOver = Bool()
     var restartButton = SKSpriteNode()
+    var titleBanner = SKSpriteNode()
+    var gameOverBanner = SKSpriteNode()
+    var tapBanner = SKSpriteNode()
+    var bobbingHero = SKAction()
     
     override func didMove(to view: SKView) {
         createScene()
@@ -68,14 +72,16 @@ class GameScene: SKScene {
         scoreLabel.fontSize = 50
         self.addChild(scoreLabel)
         
+        createTitleBanner()
         createGround()
         createhero()
+        createTapBanner()
     }
     
     func createWalls() {
         let scoreNode = SKSpriteNode()
         scoreNode.size = CGSize(width: 1, height: 200)
-        scoreNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height/2)
+        scoreNode.position = CGPoint(x: self.frame.width + 50, y: self.frame.height/2)
         scoreNode.physicsBody = SKPhysicsBody(rectangleOf: scoreNode.size)
         scoreNode.physicsBody?.affectedByGravity = false
         scoreNode.physicsBody?.isDynamic = false
@@ -90,8 +96,8 @@ class GameScene: SKScene {
         let topWall = SKSpriteNode(imageNamed: SpriteType.wall)
         let bottomWall = SKSpriteNode(imageNamed: SpriteType.wall)
         
-        topWall.position = CGPoint(x: self.frame.width + 25, y: self.frame.height/2 + 350)
-        bottomWall.position = CGPoint(x: self.frame.width + 25, y: self.frame.height/2 - 350)
+        topWall.position = CGPoint(x: self.frame.width + 50, y: self.frame.height/2 + 350)
+        bottomWall.position = CGPoint(x: self.frame.width + 50, y: self.frame.height/2 - 350)
         
         topWall.setScale(0.5)
         bottomWall.setScale(0.5)
@@ -149,6 +155,11 @@ class GameScene: SKScene {
         let texture3 = SKTexture(imageNamed: "blueSquidEnd")
         
         hero.run(SKAction.repeatForever(SKAction.animate(with: [texture1, texture2, texture3], timePerFrame: 0.1)))
+        
+        let moveUp = SKAction.moveBy(x: 0, y: 10, duration: 0.4)
+        let moveDown = SKAction.moveBy(x: 0, y: -10, duration: 0.4)
+        bobbingHero = SKAction.repeatForever(SKAction.sequence([moveUp, moveDown]))
+        hero.run(bobbingHero, withKey: "bobbingHero")
     }
     
     func createGround() {
@@ -175,7 +186,39 @@ class GameScene: SKScene {
         restartButton.zPosition = 6
         restartButton.setScale(0)
         self.addChild(restartButton)
-        restartButton.run(SKAction.scale(to: 1.0, duration: 0.25))
+        restartButton.run(SKAction.scale(to: 1.0, duration: 0.2))
+    }
+    
+    func createTitleBanner() {
+        titleBanner = SKSpriteNode(imageNamed: "titleBanner")
+        titleBanner.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2 + titleBanner.frame.height/1.2)
+        titleBanner.setScale(0)
+        titleBanner.zPosition = 7
+        self.addChild(titleBanner)
+        titleBanner.run(SKAction.scale(to: 0.6, duration: 0.2))
+    }
+    
+    func createGameOverBanner() {
+        gameOverBanner = SKSpriteNode(imageNamed: "gameOverBanner")
+        gameOverBanner.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2 + gameOverBanner.frame.height/3)
+        gameOverBanner.setScale(0.3)
+        gameOverBanner.zPosition = 8
+        self.addChild(gameOverBanner)
+        gameOverBanner.run(SKAction.scale(to: 0.6, duration: 0.2))
+    }
+    
+    func createTapBanner() {
+        tapBanner = SKSpriteNode(imageNamed: "tapBanner")
+        tapBanner.setScale(0.7)
+        tapBanner.position = CGPoint(x: self.frame.width/2 + tapBanner.frame.width/2, y: self.frame.height/2)
+        tapBanner.zPosition = 8
+        self.addChild(tapBanner)
+        
+        let scaleUp = SKAction.scale(to: 0.8, duration: 0.3)
+        let scaleDown = SKAction.scale(to: 0.7, duration: 0.3)
+        let scaleSequence = SKAction.sequence([scaleUp, scaleDown])
+        
+        tapBanner.run(SKAction.repeatForever(scaleSequence))
     }
     
     func heroJump() {
@@ -197,6 +240,10 @@ class GameScene: SKScene {
             hero.physicsBody?.affectedByGravity = true
             scoreLabel.text = "\(score)"
             
+            titleBanner.removeFromParent()
+            tapBanner.removeFromParent()
+            hero.removeAction(forKey: "bobbingHero")
+            
             let spawn = SKAction.run {
                 () in
                 self.createWalls()
@@ -209,7 +256,7 @@ class GameScene: SKScene {
             self.run(spawnDelayForever)
             
             let distance = CGFloat(self.frame.width + wallPair.frame.width)
-            let movePipes = SKAction.moveBy(x: -distance - 50, y: 0, duration: TimeInterval(0.008 * distance))
+            let movePipes = SKAction.moveBy(x: -distance - 75, y: 0, duration: TimeInterval(0.008 * distance))
             let removePipes = SKAction.removeFromParent()
             moveAndRemove = SKAction.sequence([movePipes, removePipes])
             
@@ -282,6 +329,7 @@ extension GameScene: SKPhysicsContactDelegate {
                 // Save score
                 ScoreManager.save(score: score)
                 
+                createGameOverBanner()
                 createRestartButton()
             }
         }
