@@ -38,6 +38,7 @@ class GameScene: SKScene {
     var gameOverBanner = SKSpriteNode()
     var tapBanner = SKSpriteNode()
     var bobbingHero = SKAction()
+    var highScoreBanner = SKSpriteNode()
     
     override func didMove(to view: SKView) {
         createScene()
@@ -186,7 +187,7 @@ class GameScene: SKScene {
         restartButton.zPosition = 6
         restartButton.setScale(0)
         self.addChild(restartButton)
-        restartButton.run(SKAction.scale(to: 1.0, duration: 0.2))
+        restartButton.run(SKAction.scale(to: 0.8, duration: 0.2))
     }
     
     func createTitleBanner() {
@@ -219,6 +220,14 @@ class GameScene: SKScene {
         let scaleSequence = SKAction.sequence([scaleUp, scaleDown])
         
         tapBanner.run(SKAction.repeatForever(scaleSequence))
+    }
+    
+    func createHighScoreBanner() {
+        highScoreBanner = SKSpriteNode(imageNamed: "highScoreBanner")
+        highScoreBanner.setScale(0.5)
+        highScoreBanner.position = CGPoint(x: self.frame.width/2, y: scoreLabel.position.y - highScoreBanner.frame.height)
+        highScoreBanner.zPosition = 9
+        self.addChild(highScoreBanner)
     }
     
     func heroJump() {
@@ -327,7 +336,9 @@ extension GameScene: SKPhysicsContactDelegate {
                 gameOver = true
                 
                 // Save score
-                ScoreManager.save(score: score)
+                if ScoreManager.save(score: score) {
+                    createHighScoreBanner()
+                }
                 
                 createGameOverBanner()
                 createRestartButton()

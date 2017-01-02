@@ -10,19 +10,22 @@ import UIKit
 
 class ScoreManager: NSObject {
     
-    class func save(score: Int) {
+    class func save(score: Int) -> Bool {
         let defaults = UserDefaults.standard
         
         if let currentScore = defaults.value(forKey: "userScore") as? Int {
             if score > currentScore {
                 defaults.setValue(score, forKeyPath: "userScore")
                 defaults.synchronize()
-                return
+                return true
+            } else {
+                return false
             }
         } else {
             // First time saving score
             defaults.setValue(score, forKeyPath: "userScore")
             defaults.synchronize()
+            return true
         }
     }
     
