@@ -85,7 +85,8 @@ class GameScene: SKScene {
         let scoreNode = SKSpriteNode(imageNamed: "coinStart")
         scoreNode.size = CGSize(width: 30, height: 30)
         scoreNode.position = CGPoint(x: self.frame.width + 50, y: self.frame.height/2)
-        scoreNode.physicsBody = SKPhysicsBody(circleOfRadius: scoreNode.frame.height/2)
+//        scoreNode.physicsBody = SKPhysicsBody(circleOfRadius: scoreNode.frame.height/2)
+        scoreNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 30, height: 60))
         scoreNode.physicsBody?.affectedByGravity = false
         scoreNode.physicsBody?.isDynamic = false
         scoreNode.physicsBody?.categoryBitMask = PhysicsCategory.score
@@ -172,11 +173,12 @@ class GameScene: SKScene {
     }
     
     func createGround() {
-        ground.name = "ground"
-        ground = SKSpriteNode(imageNamed: "Ground")
+//        ground.name = "ground"
+        ground = SKSpriteNode(imageNamed: "ground")
         ground.setScale(0.5)
         ground.position = CGPoint(x: self.frame.width/2, y: ground.frame.height/2)
-        
+//        ground.size = CGSize(width: self.frame.width, height: 50)
+//        ground.color = SKColor.blue
         // Physics properties
         ground.physicsBody = SKPhysicsBody(rectangleOf: ground.size)
         ground.physicsBody?.categoryBitMask = PhysicsCategory.ground
@@ -313,8 +315,6 @@ class GameScene: SKScene {
                 hero.zRotation = CGFloat.clamp(min: -1, max: 0.0, value: velocity * (velocity < 0 ? 0.003 : 0.001))
                 
                 hero.physicsBody?.angularVelocity = CGFloat.clamp(min: 0, max: 8, value: (hero.physicsBody?.angularVelocity)!)
-                
-//                print("angular velocity: \(hero.physicsBody?.angularVelocity)")
             }
         }
     }
