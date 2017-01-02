@@ -80,16 +80,22 @@ class GameScene: SKScene {
     }
     
     func createWalls() {
-        let scoreNode = SKSpriteNode()
-        scoreNode.size = CGSize(width: 1, height: 200)
+        let scoreNode = SKSpriteNode(imageNamed: "coinStart")
+        scoreNode.size = CGSize(width: 30, height: 30)
         scoreNode.position = CGPoint(x: self.frame.width + 50, y: self.frame.height/2)
-        scoreNode.physicsBody = SKPhysicsBody(rectangleOf: scoreNode.size)
+        scoreNode.physicsBody = SKPhysicsBody(circleOfRadius: scoreNode.frame.height/2)
         scoreNode.physicsBody?.affectedByGravity = false
         scoreNode.physicsBody?.isDynamic = false
         scoreNode.physicsBody?.categoryBitMask = PhysicsCategory.score
         scoreNode.physicsBody?.collisionBitMask = 0
         scoreNode.physicsBody?.contactTestBitMask = PhysicsCategory.hero
-        scoreNode.color = SKColor.blue
+        
+        // Animate coin
+        let texture1 = SKTexture(imageNamed: "coinStart")
+        let texture2 = SKTexture(imageNamed: "coinMid")
+        let texture3 = SKTexture(imageNamed: "coinEnd")
+        
+        scoreNode.run(SKAction.repeatForever(SKAction.animate(with: [texture1, texture2, texture3], timePerFrame: 0.15)))
         
         wallPair = SKNode()
         wallPair.name = "wallPair"
@@ -317,10 +323,20 @@ extension GameScene: SKPhysicsContactDelegate {
         let firstBody = contact.bodyA
         let secondBody = contact.bodyB
         
-        // Player scored
-        if (firstBody.categoryBitMask == PhysicsCategory.score && secondBody.categoryBitMask == PhysicsCategory.hero) || (firstBody.categoryBitMask == PhysicsCategory.hero && secondBody.categoryBitMask == PhysicsCategory.score) {
-            score += 1
-            scoreLabel.text = "\(score)"
+        if !gameOver {
+            // Player scored
+            if firstBody.categoryBitMask == PhysicsCategory.score && secondBody.categoryBitMask == PhysicsCategory.hero {
+                score += 1
+                scoreLabel.text = "\(score)"
+                
+                firstBody.node?.removeFromParent()
+                
+            } else if firstBody.categoryBitMask == PhysicsCategory.hero && secondBody.categoryBitMask == PhysicsCategory.score {
+                score += 1
+                scoreLabel.text = "\(score)"
+                
+                secondBody.node?.removeFromParent()
+            }
         }
         
         // Player collided with wall or ground
@@ -332,6 +348,7 @@ extension GameScene: SKPhysicsContactDelegate {
                 node.speed = 0
                 self.removeAllActions()
             }))
+            
             if !gameOver {
                 gameOver = true
                 
