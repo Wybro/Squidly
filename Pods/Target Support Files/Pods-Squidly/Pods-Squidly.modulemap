@@ -1,0 +1,6 @@
+framework module Pods_Squidly {
+  umbrella header "Pods-Squidly-umbrella.h"
+
+  export *
+  module * { export * }
+}
