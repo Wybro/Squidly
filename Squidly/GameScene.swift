@@ -40,6 +40,8 @@ class GameScene: SKScene {
     var bobbingHero = SKAction()
     var highScoreBanner = SKSpriteNode()
     
+    let coinSound = SKAction.playSoundFileNamed("coin1.wav", waitForCompletion: false)
+    
     override func didMove(to view: SKView) {
         createScene()
     }
@@ -326,12 +328,16 @@ extension GameScene: SKPhysicsContactDelegate {
         if !gameOver {
             // Player scored
             if firstBody.categoryBitMask == PhysicsCategory.score && secondBody.categoryBitMask == PhysicsCategory.hero {
+                run(coinSound)
+                
                 score += 1
                 scoreLabel.text = "\(score)"
                 
                 firstBody.node?.removeFromParent()
                 
             } else if firstBody.categoryBitMask == PhysicsCategory.hero && secondBody.categoryBitMask == PhysicsCategory.score {
+                run(coinSound)
+                
                 score += 1
                 scoreLabel.text = "\(score)"
                 

@@ -18,6 +18,7 @@
 		2DE018B41E17265200D69F19 /* RandomFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE018B31E17265200D69F19 /* RandomFunction.swift */; };
 		2DF9BF0D1E18079F00A66D95 /* 04B_19__.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9BF0C1E18079F00A66D95 /* 04B_19__.TTF */; };
 		2DF9BF0F1E1808CE00A66D95 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9BF0E1E1808CE00A66D95 /* ScoreManager.swift */; };
+		2DF9BF131E1AE91F00A66D95 /* coin1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DF9BF121E1AE91E00A66D95 /* coin1.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		2DE018B31E17265200D69F19 /* RandomFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomFunction.swift; sourceTree = "<group>"; };
 		2DF9BF0C1E18079F00A66D95 /* 04B_19__.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = 04B_19__.TTF; sourceTree = "<group>"; };
 		2DF9BF0E1E1808CE00A66D95 /* ScoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
+		2DF9BF121E1AE91E00A66D95 /* coin1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = coin1.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,9 +79,26 @@
 				2DE018A81E1717E000D69F19 /* Assets.xcassets */,
 				2DE018AA1E1717E000D69F19 /* LaunchScreen.storyboard */,
 				2DE018AD1E1717E000D69F19 /* Info.plist */,
-				2DF9BF0C1E18079F00A66D95 /* 04B_19__.TTF */,
+				2DF9BF111E1AE90E00A66D95 /* Sound effects */,
+				2DF9BF101E1AE90500A66D95 /* Font */,
 			);
 			path = Squidly;
+			sourceTree = "<group>";
+		};
+		2DF9BF101E1AE90500A66D95 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				2DF9BF0C1E18079F00A66D95 /* 04B_19__.TTF */,
+			);
+			name = Font;
+			sourceTree = "<group>";
+		};
+		2DF9BF111E1AE90E00A66D95 /* Sound effects */ = {
+			isa = PBXGroup;
+			children = (
+				2DF9BF121E1AE91E00A66D95 /* coin1.wav */,
+			);
+			name = "Sound effects";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +163,7 @@
 			files = (
 				2DE018A71E1717E000D69F19 /* Main.storyboard in Resources */,
 				2DF9BF0D1E18079F00A66D95 /* 04B_19__.TTF in Resources */,
+				2DF9BF131E1AE91F00A66D95 /* coin1.wav in Resources */,
 				2DE0189E1E1717E000D69F19 /* GameScene.sks in Resources */,
 				2DE018A91E1717E000D69F19 /* Assets.xcassets in Resources */,
 				2DE018AC1E1717E000D69F19 /* LaunchScreen.storyboard in Resources */,
