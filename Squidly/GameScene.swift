@@ -250,7 +250,7 @@ class GameScene: SKScene {
                 
                 hero.physicsBody?.angularVelocity = CGFloat.clamp(min: 0, max: 8, value: (hero.physicsBody?.angularVelocity)!)
                 
-                print("angular velocity: \(hero.physicsBody?.angularVelocity)")
+//                print("angular velocity: \(hero.physicsBody?.angularVelocity)")
             }
         }
     }

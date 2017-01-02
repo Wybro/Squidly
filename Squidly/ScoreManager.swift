@@ -13,8 +13,17 @@ class ScoreManager: NSObject {
     class func save(score: Int) {
         let defaults = UserDefaults.standard
         
-        defaults.setValue(score, forKeyPath: "userScore")
-        defaults.synchronize()
+        if let currentScore = defaults.value(forKey: "userScore") as? Int {
+            if score > currentScore {
+                defaults.setValue(score, forKeyPath: "userScore")
+                defaults.synchronize()
+                return
+            }
+        } else {
+            // First time saving score
+            defaults.setValue(score, forKeyPath: "userScore")
+            defaults.synchronize()
+        }
     }
     
     class func loadScore() -> Int {
