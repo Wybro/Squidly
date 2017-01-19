@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D41E72E1E1B09D200C54DC4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D41E72D1E1B09D200C54DC4 /* GoogleService-Info.plist */; };
 		2DE0189C1E1717E000D69F19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE0189B1E1717E000D69F19 /* AppDelegate.swift */; };
 		2DE0189E1E1717E000D69F19 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2DE0189D1E1717E000D69F19 /* GameScene.sks */; };
 		2DE018A01E1717E000D69F19 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2DE0189F1E1717E000D69F19 /* Actions.sks */; };
@@ -24,7 +23,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2D41E72D1E1B09D200C54DC4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Dropbox (Wybro)/Wybro/iOS Apps/Squidly2.0/Extra Files/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2DE018981E1717E000D69F19 /* Squidly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Squidly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DE0189B1E1717E000D69F19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DE0189D1E1717E000D69F19 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -88,7 +86,6 @@
 				2DE018A81E1717E000D69F19 /* Assets.xcassets */,
 				2DE018AA1E1717E000D69F19 /* LaunchScreen.storyboard */,
 				2DE018AD1E1717E000D69F19 /* Info.plist */,
-				2D41E72D1E1B09D200C54DC4 /* GoogleService-Info.plist */,
 				2DF9BF111E1AE90E00A66D95 /* Sound effects */,
 				2DF9BF101E1AE90500A66D95 /* Font */,
 			);
@@ -141,6 +138,7 @@
 				2DE018961E1717E000D69F19 /* Resources */,
 				C6F29FC4F90735A0DCEFB7F7 /* [CP] Embed Pods Frameworks */,
 				778AFABDD922F32D9C6F1AEA /* [CP] Copy Pods Resources */,
+				2D1A411D1E307B4C00B14A55 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -192,7 +190,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DE018A71E1717E000D69F19 /* Main.storyboard in Resources */,
-				2D41E72E1E1B09D200C54DC4 /* GoogleService-Info.plist in Resources */,
 				2DF9BF0D1E18079F00A66D95 /* 04B_19__.TTF in Resources */,
 				2DF9BF131E1AE91F00A66D95 /* coin1.wav in Resources */,
 				2DE0189E1E1717E000D69F19 /* GameScene.sks in Resources */,
@@ -205,6 +202,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2D1A411D1E307B4C00B14A55 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 0163aef782d550b44dfe0fd08ad7dc77d0b6f13d 90a102ab53d5a087306302d60b8e7eef088a2b80e4f871855be2f7e834831081";
+		};
 		68C253756E9A47EFED8731AE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -383,6 +393,7 @@
 			baseConfigurationReference = AC0D8F05CB9ED21AFC73008B /* Pods-Squidly.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = M8579RUEVZ;
 				INFOPLIST_FILE = Squidly/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

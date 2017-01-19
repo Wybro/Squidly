@@ -6,6 +6,7 @@ target 'Squidly' do
   use_frameworks!
 
   # Pods for Squidly
-  pod 'Firebase/Core'
+  pod 'Fabric'
+  pod 'Crashlytics'
 
 end
